@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Angular-Infinite-Scroll</title>
+    <base href="./" />
+    <link rel="stylesheet" href="styles/base.css" media="screen" title="Base" charset="utf-8">
+  </head>
+  <body ng-app="app" ng-controller="ApplicationController as vm">
+    <h1>{{vm.title}}</h1>
+
+    <button ng-click="vm.toggleListVisibility()">Toggle List Visibility</button>
+    <button ng-click="vm.clickLoadButton()">Load More</button>
+
+    <div class="overflowcontainer">
+      <div ng-if="vm.isListVisible">
+        <ul infinite-scroll="vm.loadNextPage()" infinite-scroll-container="'.overflowcontainer'" infinite-scroll-disabled="vm.loading">
+          <li ng-repeat="item in vm.items">{{item.name}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul>
+      <li ng-repeat="item in vm.items">{{item.name}}</li>
+    </ul>
+
+    <script src="../bower_components/angular/angular.js" ></script>
+    <script src="directives/angular-infinite-scroll/angular-infinite-scroll.js" ></script>
+    <script src="application/application.controller.js" ></script>
+    <script src="application/application.module.js" ></script>
+    <script src="app.js" ></script>
+  </body>
+</html>

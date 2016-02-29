@@ -1,0 +1,19 @@
+{
+  "name": "angular-infinite-scroll",
+  "version": "0.1.0",
+  "description": "Infinite scrolling directive for angularjs 1.x",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "infinite",
+    "scroll"
+  ],
+  "author": "Matt Mazzola",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.7"
+  }
+}
