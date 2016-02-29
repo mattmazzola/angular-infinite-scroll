@@ -1,8 +1,8 @@
-ApplicationController.$inject = ['$window'];
-function ApplicationController($window) {
+ApplicationController.$inject = ['$q'];
+function ApplicationController($q) {
   this.title = 'Angular-Infinite-Scroll';
   this.isListVisible = true;
-  this.loading = false;
+  this.isListAtEnd = false;
   this.items = [];
   this.totalItems = [];
 
@@ -13,7 +13,7 @@ function ApplicationController($window) {
   }
 
   this.offset = 0;
-  this.pageSize = 10;
+  this.pageSize = 5;
   this.loadNextPage = function() {
     var items = this.totalItems.slice(this.offset, this.offset + this.pageSize);
     this.offset += this.pageSize;
@@ -21,12 +21,23 @@ function ApplicationController($window) {
   }
 
   this.loadNextPage();
+  this.dummyScrollHandler = function () {
+      var that = this;
+      console.log('dummy scroll handler');
+      return new $q(resolve => {
+          that.loadNextPage();
+          resolve();
+      });
+  }
 
   this.clickLoadButton = function () {
     this.loadNextPage();
   }
   this.toggleListVisibility = function () {
     this.isListVisible = !this.isListVisible;
+  }
+  this.toggleDisabledState = function () {
+      this.isListAtEnd = !this.isListAtEnd;
   }
 }
 

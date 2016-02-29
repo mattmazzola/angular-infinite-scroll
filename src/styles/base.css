@@ -1,7 +1,7 @@
 
 
 .overflowcontainer {
-  height: 500px;
+  height: 300px;
   overflow-y: auto;
   border: 2px dashed blue;
 }

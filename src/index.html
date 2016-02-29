@@ -11,10 +11,19 @@
 
     <button ng-click="vm.toggleListVisibility()">Toggle List Visibility</button>
     <button ng-click="vm.clickLoadButton()">Load More</button>
-
+    <button ng-click="vm.toggleDisabledState()">Toggle Disabled State ({{vm.isListAtEnd}})</button>
+    
+    <hr />
+    
     <div class="overflowcontainer">
       <div ng-if="vm.isListVisible">
-        <ul infinite-scroll="vm.loadNextPage()" infinite-scroll-container="'.overflowcontainer'" infinite-scroll-disabled="vm.loading">
+        <ul infinite-scroll
+        infinite-scroll-handler="vm.dummyScrollHandler()"
+        infinite-scroll-container="'.overflowcontainer'"
+        infinite-scroll-offset="20"
+        infinite-scroll-disabled="vm.isListAtEnd"
+        infinite-scroll-delay="800"
+        >
           <li ng-repeat="item in vm.items">{{item.name}}</li>
         </ul>
       </div>
